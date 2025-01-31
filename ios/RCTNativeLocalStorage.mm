@@ -2,6 +2,7 @@
 //  TurboModuleExample
 
 #import "RCTNativeLocalStorage.h"
+#import "NativeLocalStorage-Swift.h"
 
 static NSString *const RCTNativeLocalStorageKey = @"local-storage";
 
@@ -9,13 +10,15 @@ static NSString *const RCTNativeLocalStorageKey = @"local-storage";
 @property (strong, nonatomic) NSUserDefaults *localStorage;
 @end
 
-@implementation RCTNativeLocalStorage
+@implementation RCTNativeLocalStorage {
+  NativeLocalStorage *_swiftLocalStorage;
+}
 
-RCT_EXPORT_MODULE(NativeLocalStorage)
+RCT_EXPORT_MODULE(NativeLocalStorageModule)
 
 - (id) init {
   if (self = [super init]) {
-    _localStorage = [[NSUserDefaults alloc] initWithSuiteName:RCTNativeLocalStorageKey];
+    _swiftLocalStorage = [NativeLocalStorage new];
   }
   return self;
 }
@@ -25,23 +28,20 @@ RCT_EXPORT_MODULE(NativeLocalStorage)
 }
 
 - (NSString * _Nullable)getItem:(NSString *)key {
-  return [self.localStorage stringForKey:key];
+  return [_swiftLocalStorage getItem:key];
 }
 
 - (void)setItem:(NSString *)value
           key:(NSString *)key {
-  [self.localStorage setObject:value forKey:key];
+  [_swiftLocalStorage setItem:value key:key];
 }
 
 - (void)removeItem:(NSString *)key {
-  [self.localStorage removeObjectForKey:key];
+  [_swiftLocalStorage removeItem:key];
 }
 
 - (void)clear {
-  NSDictionary *keys = [self.localStorage dictionaryRepresentation];
-  for (NSString *key in keys) {
-    [self removeItem:key];
-  }
+  [_swiftLocalStorage clear];
 }
 
 @end
