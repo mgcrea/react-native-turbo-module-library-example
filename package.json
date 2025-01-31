@@ -8,14 +8,16 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "npm run build:babel && npm run build:types",
+    "dev": "cd example; npm run dev",
+    "build": "npm run build:babel && npm run build:types; npm run codegen:ios",
     "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --copy-files",
-    "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist src/index.ts",
-    "install:ios": "cd ${npm_package_json%/package.json}/example/ios && bundle exec pod install && cd -",
-    "open:ios": "xed ${npm_package_json%/package.json}/example/ios",
+    "build:types": "tsc --project tsconfig.json --emitDeclarationOnly --declaration --outDir dist",
+    "install:ios": "cd example; npm run install:ios",
+    "open:ios": "cd example; npm run open:ios",
     "codegen:ios": "rm -rf ios/generated; node node_modules/react-native/scripts/generate-codegen-artifacts.js -p . -t ios && rm ios/generated/RCT* ios/generated/*.podspec",
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": "*",
@@ -23,6 +25,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
+    "@babel/core": "^7.25.2",
     "@babel/runtime": "^7.25.0",
     "@react-native/babel-preset": "^0.77.0",
     "@react-native/typescript-config": "^0.77.0",

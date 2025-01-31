@@ -16,9 +16,11 @@ This repository contains the bare minimum code to build & test your Turbo Module
 To get started, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/yourusername/react-native-turbo-module-library-example.git
+git clone https://github.com/mgcrea/react-native-turbo-module-library-example.git
 cd react-native-turbo-module-library-example
-yarn install
+corepack install
+pnpm install
+
 ```
 
 ## Usage
@@ -27,13 +29,10 @@ To run the example project, use the following commands:
 
 ```bash
 # For iOS
-cd ios
-pod install
-cd ..
-yarn ios
-
-# For Android
-yarn android
+cd example
+bundle install
+npm run install:ios
+npm run open:ios
 ```
 
 ## Contributing

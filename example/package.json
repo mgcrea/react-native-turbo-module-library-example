@@ -7,8 +7,8 @@
     "dev": "watchman watch-del-all; react-native start --reset-cache",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "install:ios": "cd ${npm_package_json%/package.json}/ios && bundle exec pod install && cd -",
-    "open:ios": "xed ${npm_package_json%/package.json}/ios",
+    "install:ios": "cd ios && bundle exec pod install && cd -",
+    "open:ios": "xed ios",
     "lint": "eslint .",
     "test": "jest"
   },
