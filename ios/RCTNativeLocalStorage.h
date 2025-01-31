@@ -2,7 +2,7 @@
 //  TurboModuleExample
 
 #import <Foundation/Foundation.h>
-#import "generated/NativeLocalStorageSpec/NativeLocalStorageSpec.h"
+#import <NativeLocalStorageSpec.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
