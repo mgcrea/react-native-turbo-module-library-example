@@ -2,7 +2,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet, Text, TextInput, Button} from 'react-native';
 
 import {NativeLocalStorage} from 'react-native-local-storage';
-
+console.warn({NativeLocalStorage});
 const EMPTY = '<empty>';
 
 function App(): React.JSX.Element {

@@ -1,8 +1,8 @@
 //  RCTNativeLocalStorage.h
 //  TurboModuleExample
 
+#import "generated/NativeLocalStorageSpec/NativeLocalStorageSpec.h"
 #import <Foundation/Foundation.h>
-#import <NativeLocalStorageSpec.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

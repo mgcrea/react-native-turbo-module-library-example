@@ -2,12 +2,15 @@
 //  TurboModuleExample
 
 #import "RCTNativeLocalStorage.h"
+
+#import "generated/NativeLocalStorageSpec/NativeLocalStorageSpec.h"
+
 #import "NativeLocalStorage-Swift.h"
 
 static NSString *const RCTNativeLocalStorageKey = @"local-storage";
 
-@interface RCTNativeLocalStorage()
-@property (strong, nonatomic) NSUserDefaults *localStorage;
+@interface RCTNativeLocalStorage ()
+@property(strong, nonatomic) NSUserDefaults *localStorage;
 @end
 
 @implementation RCTNativeLocalStorage {
@@ -16,23 +19,23 @@ static NSString *const RCTNativeLocalStorageKey = @"local-storage";
 
 RCT_EXPORT_MODULE(NativeLocalStorageModule)
 
-- (id) init {
+- (id)init {
   if (self = [super init]) {
     _swiftLocalStorage = [NativeLocalStorage new];
   }
   return self;
 }
 
-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:(const facebook::react::ObjCTurboModule::InitParams &)params {
+- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
+    (const facebook::react::ObjCTurboModule::InitParams &)params {
   return std::make_shared<facebook::react::NativeLocalStorageSpecJSI>(params);
 }
 
-- (NSString * _Nullable)getItem:(NSString *)key {
+- (NSString *_Nullable)getItem:(NSString *)key {
   return [_swiftLocalStorage getItem:key];
 }
 
-- (void)setItem:(NSString *)value
-          key:(NSString *)key {
+- (void)setItem:(NSString *)value key:(NSString *)key {
   [_swiftLocalStorage setItem:value key:key];
 }
 
